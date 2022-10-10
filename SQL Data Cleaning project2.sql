@@ -40,7 +40,7 @@ join NewPortfolioProject..HousingData$ b
 	on a.ParcelID = b.ParcelID
 	and a.[UniqueID ] <> b.[UniqueID ]
 
-/* We noticed that a ParcelID corresponds to a particular PropertyAddress. So we can populate the PropertyAddress based on corresponding ParcelID.
+/* We noticed that a particular ParcelID corresponds to a particular PropertyAddress. So we can populate the PropertyAddress based on corresponding ParcelID.
 */
 
 select a.ParcelID, a.PropertyAddress, b.ParcelID, b.PropertyAddress, ISNULL(a.PropertyAddress, b.PropertyAddress)
@@ -112,16 +112,16 @@ update HousingData$
 set OwnerSplitAddress = PARSENAME(REPLACE(OwnerAddress, ',', '.'), 3)
 
 alter table HousingData$
-add OWnerSplitCity nvarchar(255);
+add OwnerSplitCity nvarchar(255);
 
 update HousingData$
-set OWnerSplitCity = PARSENAME(REPLACE(OwnerAddress, ',', '.'), 2)
+set OwnerSplitCity = PARSENAME(REPLACE(OwnerAddress, ',', '.'), 2)
 
 alter table HousingData$
-add OWnerSplitState nvarchar(255);
+add OwnerSplitState nvarchar(255);
 
 update HousingData$
-set OWnerSplitState = PARSENAME(REPLACE(OwnerAddress, ',', '.'), 1)
+set OwnerSplitState = PARSENAME(REPLACE(OwnerAddress, ',', '.'), 1)
 
 
 select *
